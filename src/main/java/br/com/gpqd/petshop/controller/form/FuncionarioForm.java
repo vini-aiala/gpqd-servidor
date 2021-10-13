@@ -1,6 +1,7 @@
-package br.com.gpqd.petshop.model.form;
+package br.com.gpqd.petshop.controller.form;
 
 import br.com.gpqd.petshop.model.Funcionario;
+import br.com.gpqd.petshop.repository.FuncionarioRepository;
 
 public class FuncionarioForm {
     private String nome;
@@ -8,6 +9,13 @@ public class FuncionarioForm {
 
     public Funcionario build() {
         return new Funcionario(nome, cargo);
+    }
+
+    public Funcionario update(Long id, FuncionarioRepository funcionarioRepository) {
+        Funcionario funcionario = funcionarioRepository.getById(id);
+        funcionario.setNome(nome);
+        funcionario.setCargo(cargo);
+        return funcionario;
     }
 
     public String getNome() {

@@ -1,10 +1,9 @@
-package br.com.gpqd.petshop.model.form;
+package br.com.gpqd.petshop.controller.form;
 
 import br.com.gpqd.petshop.model.Cliente;
 import br.com.gpqd.petshop.model.Pet;
 import br.com.gpqd.petshop.repository.ClienteRepository;
-
-import javax.persistence.ManyToOne;
+import br.com.gpqd.petshop.repository.PetRepository;
 
 public class PetForm {
     private String nome;
@@ -13,6 +12,14 @@ public class PetForm {
     public Pet build(ClienteRepository clienteRepository) {
         Cliente dono = clienteRepository.getById(donoId);
         return new Pet(nome, dono);
+    }
+
+    public Pet update (Long id, PetRepository petRepository, ClienteRepository clienteRepository) {
+        Pet pet = petRepository.getById(id);
+        Cliente dono = clienteRepository.getById(donoId);
+        pet.setNome(nome);
+        pet.setDono(dono);
+        return pet;
     }
 
     public String getNome() {

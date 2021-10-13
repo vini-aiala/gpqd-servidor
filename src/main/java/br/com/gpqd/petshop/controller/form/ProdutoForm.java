@@ -1,6 +1,7 @@
-package br.com.gpqd.petshop.model.form;
+package br.com.gpqd.petshop.controller.form;
 
 import br.com.gpqd.petshop.model.Produto;
+import br.com.gpqd.petshop.repository.ProdutoRepository;
 
 public class ProdutoForm {
     private String nome;
@@ -8,6 +9,13 @@ public class ProdutoForm {
 
     public Produto build() {
         return new Produto(nome, preco);
+    }
+
+    public Produto update(Long id, ProdutoRepository produtoRepository) {
+        Produto produto = produtoRepository.getById(id);
+        produto.setNome(nome);
+        produto.setPreco(preco);
+        return produto;
     }
 
     public String getNome() {

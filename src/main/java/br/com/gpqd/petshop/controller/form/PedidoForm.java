@@ -1,4 +1,4 @@
-package br.com.gpqd.petshop.model.form;
+package br.com.gpqd.petshop.controller.form;
 
 import br.com.gpqd.petshop.model.Cliente;
 import br.com.gpqd.petshop.model.Funcionario;
@@ -6,10 +6,9 @@ import br.com.gpqd.petshop.model.Pedido;
 import br.com.gpqd.petshop.model.Produto;
 import br.com.gpqd.petshop.repository.ClienteRepository;
 import br.com.gpqd.petshop.repository.FuncionarioRepository;
+import br.com.gpqd.petshop.repository.PedidoRepository;
 import br.com.gpqd.petshop.repository.ProdutoRepository;
 
-import javax.persistence.ManyToOne;
-import java.util.ArrayList;
 import java.util.List;
 
 public class PedidoForm {
@@ -22,6 +21,24 @@ public class PedidoForm {
         Cliente cliente = clienteRepository.getById(clienteId);
         Funcionario funcionario = funcionarioRepository.getById(funcionarioId);
         return new Pedido(produtos, cliente, funcionario);
+    }
+
+    public Pedido update(
+            Long id,
+            ClienteRepository clienteRepository,
+            FuncionarioRepository funcionarioRepository,
+            ProdutoRepository produtoRepository,
+            PedidoRepository pedidoRepository
+    ) {
+        Pedido pedido = pedidoRepository.getById(id);
+        List<Produto> produtos = produtoRepository.findAllById(produtosId);
+        Cliente cliente = clienteRepository.getById(clienteId);
+        Funcionario funcionario = funcionarioRepository.getById(funcionarioId);
+        pedido.setProdutos(produtos);
+        pedido.setCliente(cliente);
+        pedido.setFuncionario(funcionario);
+        return pedido;
+
     }
 
     public List<Long> getProdutosId() {
