@@ -10,4 +10,8 @@ public class Pet {
     @ManyToOne
     private Cliente dono;
 
+    public Pet(String nome, Cliente dono) {
+        this.nome = nome;
+        this.dono = dono;
+    }
 }

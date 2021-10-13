@@ -11,5 +11,13 @@ public class Produto {
     private Long id;
     private String nome;
     private Float preco;
-    private Long quantidade;
+
+    public Produto(String nome, Float preco) {
+        this.nome = nome;
+        this.preco = preco;
+    }
+
+    public Produto() {
+
+    }
 }

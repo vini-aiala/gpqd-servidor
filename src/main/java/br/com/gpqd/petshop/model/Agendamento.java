@@ -12,4 +12,14 @@ public class Agendamento {
     private Funcionario funcionario;
     @OneToOne
     private Pet pet;
+
+    public Agendamento(LocalDateTime horario, Funcionario funcionario, Pet pet) {
+        this.horario = horario;
+        this.funcionario = funcionario;
+        this.pet = pet;
+    }
+
+    public Agendamento() {
+
+    }
 }

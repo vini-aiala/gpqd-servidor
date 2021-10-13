@@ -13,4 +13,14 @@ public class Pedido {
     private Cliente cliente;
     @ManyToOne
     private Funcionario funcionario;
+
+    public Pedido(List<Produto> produtos, Cliente cliente, Funcionario funcionario) {
+        this.cliente = cliente;
+        this.produtos = produtos;
+        this.funcionario = funcionario;
+    }
+
+    public Pedido() {
+
+    }
 }
