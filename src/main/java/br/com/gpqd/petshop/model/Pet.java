@@ -38,4 +38,8 @@ public class Pet {
         this.nome = nome;
         this.dono = dono;
     }
+    
+    public Pet() {
+
+    }
 }
