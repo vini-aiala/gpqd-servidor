@@ -11,7 +11,8 @@ public class ClienteForm {
     }
 
     public Cliente update(Long id, ClienteRepository clienteRepository) {
-        Cliente cliente = clienteRepository.getById(id);
+        Cliente cliente = clienteRepository.findById(id).orElseThrow(IllegalArgumentException::new);
+        assert cliente != null;
         cliente.setNome(nome);
         return cliente;
     }

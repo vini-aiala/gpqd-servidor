@@ -12,7 +12,7 @@ public class FuncionarioForm {
     }
 
     public Funcionario update(Long id, FuncionarioRepository funcionarioRepository) {
-        Funcionario funcionario = funcionarioRepository.getById(id);
+        Funcionario funcionario = funcionarioRepository.findById(id).orElseThrow(IllegalAccessError::new);
         funcionario.setNome(nome);
         funcionario.setCargo(cargo);
         return funcionario;

@@ -12,7 +12,7 @@ public class ProdutoForm {
     }
 
     public Produto update(Long id, ProdutoRepository produtoRepository) {
-        Produto produto = produtoRepository.getById(id);
+        Produto produto = produtoRepository.findById(id).orElseThrow(IllegalArgumentException::new);
         produto.setNome(nome);
         produto.setPreco(preco);
         return produto;

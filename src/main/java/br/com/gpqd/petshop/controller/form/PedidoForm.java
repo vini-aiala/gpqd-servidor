@@ -18,8 +18,8 @@ public class PedidoForm {
 
     public Pedido build(ClienteRepository clienteRepository, FuncionarioRepository funcionarioRepository, ProdutoRepository produtoRepository) {
         List<Produto> produtos = produtoRepository.findAllById(produtosId);
-        Cliente cliente = clienteRepository.getById(clienteId);
-        Funcionario funcionario = funcionarioRepository.getById(funcionarioId);
+        Cliente cliente = clienteRepository.findById(clienteId).orElseThrow(IllegalArgumentException::new);
+        Funcionario funcionario = funcionarioRepository.findById(funcionarioId).orElseThrow(IllegalArgumentException::new);
         return new Pedido(produtos, cliente, funcionario);
     }
 
@@ -30,10 +30,10 @@ public class PedidoForm {
             ProdutoRepository produtoRepository,
             PedidoRepository pedidoRepository
     ) {
-        Pedido pedido = pedidoRepository.getById(id);
+        Pedido pedido = pedidoRepository.findById(id).orElseThrow(IllegalArgumentException::new);
         List<Produto> produtos = produtoRepository.findAllById(produtosId);
-        Cliente cliente = clienteRepository.getById(clienteId);
-        Funcionario funcionario = funcionarioRepository.getById(funcionarioId);
+        Cliente cliente = clienteRepository.findById(clienteId).orElseThrow(IllegalArgumentException::new);
+        Funcionario funcionario = funcionarioRepository.findById(funcionarioId).orElseThrow(IllegalArgumentException::new);
         pedido.setProdutos(produtos);
         pedido.setCliente(cliente);
         pedido.setFuncionario(funcionario);
